@@ -2,18 +2,19 @@ import React from "react";
 import {Table,Input,TableContainer,FormControl,InputLabel, TableCell,TableBody,TableRow} from "@mui/material";
 import axios from "axios";
 import ReactDOM from 'react-dom/client';
+import CustomerMenu from "./CustomerMenu";
 export default class PlaceOrder extends React.Component
 {
     constructor()
     {
         super();
         this.state={
-            email:sessionStorage.getItem("email"),
+            email:sessionStorage.getItem("EM"),
             productId:sessionStorage.getItem("productId"),
             product:"",
-            qty:"",
-            TotalPrice:0,
-            address:""
+            qty:0,
+            address:"",
+            TotalPrice:0
         }
     }
 
@@ -23,7 +24,9 @@ export default class PlaceOrder extends React.Component
             this.setState({product:r.data})
             console.log(this.state.product);
         })
-        axios.get("http://localhost:5041/api/Customer/ShowAllShippingAddress/")
+        // axios.get("http://localhost:5041/api/Customer/ShowAllShippingAddress/"+this.state.email).then(r=>{
+        //     this.setState({address:r.data});
+        // })
     }
 
     getData=(e)=>
@@ -31,11 +34,6 @@ export default class PlaceOrder extends React.Component
         this.setState({[e.target.name]:e.target.value}); 
     }
 
-    calculatePrice=()=>{
-        let totalPrice=this.state.qty*this.state.product.productPrice;
-        this.setState({TotalPrice:totalPrice})
-        document.getElementsByName("amount")[0].value=this.state.TotalPrice;
-    }
 
     
 
@@ -66,13 +64,16 @@ export default class PlaceOrder extends React.Component
         const o={
             emailId:this.state.email,
             sellerEmailId:this.state.product.emailId,
+            productId:this.state.product.productId,
             productType:this.state.product.productType,
             productName:this.state.product.productName,
             productBrand:this.state.product.productBrand,
+            productImage:this.state.product.productImage,
             productPrice:this.state.product.productPrice,
             productDescription:this.state.product.productDescription,
             shippingCost:this.state.product.shippingCost,
-            quantityPurchased:this.state.qty
+            quantityPurchased:this.state.qty,
+            deliveryStatus:"On The Way"
         }
         console.log(o);
         axios.post("http://localhost:5041/api/Customer/AddOrder",o).then(r=>{
@@ -90,12 +91,18 @@ export default class PlaceOrder extends React.Component
 
     }
 
+    CustomerMenu=()=>{
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<CustomerMenu/>);
+    }
+
     render()
     {
         return(
             <>
                 <div class="container-fluid">
-                <TableContainer sx={{ maxHeight:500}} >
+                    <button onClick={this.CustomerMenu} class="btn btn-primary" style={{backgroundColor:"black"}}>Customer Menu</button>
+                <TableContainer sx={{ maxHeight:600}} >
                     <Table stickyHeader aria-label="sticky table" >
                     <TableBody>
                         <TableRow>
@@ -106,7 +113,6 @@ export default class PlaceOrder extends React.Component
                             <TableCell align="center"><b>Shipping Cost</b></TableCell>      
                             <TableCell align="center"><b>Product Price</b></TableCell>      
                             <TableCell align="center"><b>Enter Quantity</b></TableCell>
-                            <TableCell align="center"><b>Total Price</b></TableCell>
                         </TableRow>
                         <TableRow>
                             <TableCell align="center"><img src ={this.state.product.productImage} alt="Card image" width="100%" height="50%" /> </TableCell>
@@ -116,18 +122,12 @@ export default class PlaceOrder extends React.Component
                             <TableCell align="center">Rs. {this.state.product.shippingCost} </TableCell>
                             <TableCell align="center">Rs. {this.state.product.productPrice} </TableCell>
                             <TableCell align="center">
-                                <Input className="inputs" name="qty" type="number" placeholder="1 to 10" autoComplete="qty" disableUnderline={true} onChange={this.calculatePrice} onInput={this.getData}/>
+                                <Input className="inputs" name="qty" type="number" placeholder="--Enter 1 to 10---" autoComplete="qty" disableUnderline={true} onInput={this.getData}/>
                             </TableCell>
-                            <TableCell align="center"><Input name="amount" onChange={this.getData} disableUnderline={true} readOnly={true} /></TableCell>
-                        </TableRow>
-                        <TableRow>
-                            <TableCell align="center" colSpan={3}>Select Shipping Address</TableCell>
-
-                            <TableCell align="center" colSpan={4}></TableCell>
                         </TableRow>
                         <TableRow>
                             <TableCell align="center" colSpan={7}>
-                                <button class="btn btn-primary" disabled={!this.isValid()} onClick={this.placeorder}>Buy Now</button>
+                                <button class="btn btn-primary"  disabled={!this.isValid()} onClick={this.placeorder}>Buy Now</button>
                             </TableCell>
                         </TableRow>
 

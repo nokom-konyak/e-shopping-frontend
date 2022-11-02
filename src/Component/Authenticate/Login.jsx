@@ -8,7 +8,7 @@ import axios from "axios";
 import ForgotPassword from "./ForgotPassword";
 import Register from './Register';
 import Home from "../Home/home";
-const root = ReactDOM.createRoot(document.getElementById('root'));
+import CustomerMenu from "../Customer/CustomerMenu";
 
 export default class Login extends React.Component{
     constructor(){
@@ -16,7 +16,6 @@ export default class Login extends React.Component{
         this.state={
             email:'',
             pwd:'',
-
         }
     }
     Getdata=(e)=>{
@@ -24,26 +23,33 @@ export default class Login extends React.Component{
     }
     ForgotPwd=()=>
     {
+        const root = ReactDOM.createRoot(document.getElementById('root'));
         root.render(<ForgotPassword/>);
     }
     RegisterUser=()=>
     {
+        const root = ReactDOM.createRoot(document.getElementById('root'));
         root.render(<Register/>);
     }
     submit=(e)=>{   
         e.preventDefault();
         sessionStorage.setItem("EM",this.state.email);
+        const root = ReactDOM.createRoot(document.getElementById('root'));
         axios.get("http://localhost:5041/api/Authenticate/Login/" + this.state.email + "/" + this.state.pwd).then( r=> {
             console.log(r.data);
-            if(r.data == "Customer"){
-               // root.render(<CustomerMenu/>)
+            if(r.data == "Customer")
+            {
                 alert("Customer Login")
-            }else if(r.data == "Seller"){
+                root.render(<CustomerMenu/>)
+            }
+            else if(r.data == "Seller")
+            {
                 alert("Seller Login");
                // root.render(<AdminMenu/>);
             }
             else{
                 alert("Invalid Credentials");
+                return ;
             }
         })
     
@@ -66,8 +72,8 @@ export default class Login extends React.Component{
             <>
             <div className="container-fluid">
                 <button onClick={this.home} class="btn btn-primary" style={{backgroundColor:"black"}}>Home</button>
-
-            <Box textAlign={"center"} boxShadow={"6px 6px 12px black"} margin="auto"  marginTop={6}  padding={5}   sx={{
+            
+            <Box textAlign={"center"} boxShadow={"6px 6px 12px black"} margin="auto" className="paper" marginTop={6}  padding={5}   sx={{
                 ":hover": {
                     
                     boxShadow:"6px 6px 12px red",

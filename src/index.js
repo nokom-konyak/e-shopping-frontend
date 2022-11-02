@@ -11,10 +11,7 @@ import Home from './Component/Home/home';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <>
-  {/* <Register></Register>
-  <AddShippingAddress></AddShippingAddress> 
-  <AddProduct></AddProduct>
-  <ShowAllProducts></ShowAllProducts>*/}
   <Home></Home>
   </>
 );
+

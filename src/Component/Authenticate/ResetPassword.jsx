@@ -67,7 +67,7 @@ export default class ResetPassword extends React.Component
             <div className="container-fluid">
                 <button onClick={this.home} class="btn btn-primary" style={{backgroundColor:"black"}}>Home</button>
 
-             <Box textAlign={"center"} boxShadow={"6px 6px 12px black"} margin="auto" marginTop={6}  padding={5}   sx={{
+             <Box textAlign={"center"} boxShadow={"6px 6px 12px black"} margin="auto" className="paper" marginTop={6}  padding={5}   sx={{
                 ":hover": {  
                     boxShadow:"6px 6px 12px red",
                   }

@@ -58,7 +58,7 @@ export default class ChangePassword extends React.Component{
     render(){
         return(
             <>
-            <Box textAlign={"center"} boxShadow={"6px 6px 12px black"} margin="auto" width={"40%"} marginTop={6}  padding={5}   sx={{
+            <Box textAlign={"center"} boxShadow={"6px 6px 12px black"} margin="auto" className="paper" marginTop={6}  padding={5}   sx={{
                 ":hover": {
                     
                     boxShadow:"6px 6px 12px red",

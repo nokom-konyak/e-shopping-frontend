@@ -8,7 +8,7 @@ export default class ShowAllProducts extends React.Component
     {
         super();
         this.state={
-            email:"customer@gmail.com",
+            email:sessionStorage.getItem("EM"),
             products:[]
         }
     }

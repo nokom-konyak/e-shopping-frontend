@@ -9,7 +9,7 @@ export default class AddShippingAddress extends React.Component {
     constructor(){
         super();
         this.state={
-            email:sessionStorage.getItem("email"),
+            email:sessionStorage.getItem("EM"),
             name:"",
             mobNo:"",
             fullAddress:'',
@@ -50,7 +50,8 @@ export default class AddShippingAddress extends React.Component {
             phoneNo:mobNo,
             fullAddress:this.state.fullAddress,
             pinCode:pinCode,
-            addrType:this.state.addressType
+            addrType:this.state.addressType,
+            emialId:this.state.email
         }
 
         axios.post("http://localhost:5041/api/Customer/AddShippingAddress/",addr).then(r=>{
