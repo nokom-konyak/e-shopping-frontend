@@ -93,14 +93,14 @@ export default class ShowAllProducts extends React.Component
             <div class="container-fluid"> 
                 <div class="row">
                     {this.state.products.map(i=>
-                        <div class="card col-md-3  card_design" >
-                        <img src ={i.productImage} alt="Card image" width="100%" height="50%" />
-                        <p class="card-text">Product Name: {i.productName}</p>
-                        <p class="card-text">Product Type: {i.productType} </p>
-                        <p class="card-text">Product Brand: {i.productBrand}</p>
-                        <p class="card-text">Product Price: Rs {i.productPrice} </p>
-                        <p class="card-text">Available Quantity: {i.productQuantity} </p>
-                        <p class="card-text">Product Rating: {i.rating} </p>
+                        <div class="card col-md-3  card_design" style={{width:"200px", height:"400px"}} >
+                        <img src ={i.productImage} alt="Card image"/>
+                        <p><b>Product Name:</b> {i.productName}<br/>
+                        <b>Product Type:</b> {i.productType}<br/>
+                        <b>Product Brand:</b> {i.productBrand}<br/>
+                        <b>Product Price: ₹</b> {i.productPrice}<br/>
+                        <b>Available Quantity:</b> {i.productQuantity}<br/>
+                        <b>Product Rating:</b> {i.rating} </p>
                         <br/>
                         <div>
                             <button class="btn btn-outline-primary" onClick={this.AddToCart.bind(this,i)}>Add To Cart</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

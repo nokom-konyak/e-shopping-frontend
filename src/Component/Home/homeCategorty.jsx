@@ -7,6 +7,7 @@ import axios from "axios";
 import Login from "../Authenticate/Login";
 import Register from "../Authenticate/Register";
 import electronics from '../../Images/electronics.png';
+import Appliances from '../../Images/Appliances.png';
 import Furniture from '../../Images/Furniture.png';
 import toys from '../../Images/Toys.png';
 import Grocery from '../../Images/Grocery.png';
@@ -21,21 +22,20 @@ import Carousel from 'react-bootstrap/Carousel';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
-import HomeCategory from "./homeCategorty";
+import Home from "./home";
 import SearchProductHome from "./SearchProductHome";
-import AboutUs from "./AboutUs";
-import Dropdown from 'react-bootstrap/Dropdown';
 
-export default class Home extends React.Component {
+export default class HomeCategory extends React.Component {
     constructor() {
         super();
         this.state = {
             productName: "",
-            products: []
+            products: [],
+            category: sessionStorage.getItem("category")
         }
     }
     componentDidMount() {
-        axios.get("http://localhost:5041/api/Customer/ShowAllProducts").then(r => {
+        axios.get("http://localhost:5041/api/Customer/ShowProductByCategory/" + this.state.category).then(r => {
             console.log(r.data);
             this.setState({ products: r.data });
         })
@@ -45,7 +45,8 @@ export default class Home extends React.Component {
     }
 
     home = () => {
-        return;
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<Home />);
     }
 
     search = () => {
@@ -90,11 +91,6 @@ export default class Home extends React.Component {
         root.render(<HomeCategory />);
     }
 
-    aboutUs = () => {
-        const root = ReactDOM.createRoot(document.getElementById('root'));
-        root.render(<AboutUs />);
-    }
-
     render() {
         return (
             <>
@@ -122,6 +118,7 @@ export default class Home extends React.Component {
                                     <button onClick={this.customerCare} class="btn btn-primary">Customer Care</button>
                                     
                                 </li>
+                                
                                 &nbsp;
                                 <li>
                                     <Button variant="contained" color="primary" onClick={this.login} >
@@ -190,6 +187,8 @@ export default class Home extends React.Component {
                         </Carousel.Item>
                     </Carousel>
 
+                    <h1 style={{ textAlign: "center" }} >{this.state.category}</h1>
+
                     <div class="row">
                         {this.state.products.map(i =>
                             <div class="card col-md-2 card_design" style={{ width: "200px", height: "400px" }} >
@@ -198,8 +197,8 @@ export default class Home extends React.Component {
                                     <b>Product Type:</b> {i.productType}<br />
                                     <b>Product Brand:</b> {i.productBrand}<br />
                                     <b>Product Price: ₹</b> {i.productPrice}<br />
-                                    <b>Available Quantity </b>{i.productQuantity}<br />
-                                    <b>Product Rating:</b> {i.rating}</p>
+                                    <b>Available Quantity:</b> {i.productQuantity}<br />
+                                    <b>Product Rating:</b> {i.rating} </p>
                                 {i.productQuantity < 1 ? <button class="btn btn-outline-danger">Product Out Of Stock</button> : <>
                                     <div>
                                         <button class="btn btn-outline-primary btn-sm buttonstyle" onClick={this.AddToCart.bind(this, i)}>Add To Cart</button>
@@ -215,6 +214,4 @@ export default class Home extends React.Component {
         )
     }
 }
-
-
 

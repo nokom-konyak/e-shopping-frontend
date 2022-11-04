@@ -1,16 +1,15 @@
 import axios from "axios";
 import React from "react";
 import ReactDOM from 'react-dom/client';
-import PlaceOrder from "./PlaceOrder";
 import CustomerMenu from "./CustomerMenu";
 import ShowAllOrders from "./ShowAllOrders";
 import SearchProductCustomer from "./SearchProductCustomer";
-import ShowWishList from "./ShowWishList";
 import Home from "../Home/home";
+import ShowCart from "./ShowCart";
 import ShoppingCarticon from "@mui/icons-material/ShoppingCart";
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { FormLabel, FormControl, Input, InputLabel, Button, Select, MenuItem } from "@mui/material";
-export default class ShowCart extends React.Component
+export default class ShowWishList extends React.Component
 {
     constructor()
     {
@@ -22,16 +21,17 @@ export default class ShowCart extends React.Component
     }
     componentDidMount()
     {
-        axios.get("http://localhost:5041/api/Customer/ShowAllCart/"+this.state.email).then(r=>{
+        axios.get("http://localhost:5041/api/Customer/ShowAllWishlist/"+this.state.email).then(r=>{
             console.log(r.data);
             if(r.data.length<1)
             {
-                alert("Your Cart Is Empty!!!!");
+                alert("Your WishList Is Empty!!!!");
                 const root = ReactDOM.createRoot(document.getElementById('root'));
                 root.render(<CustomerMenu/>);
             }
             this.setState({products:r.data});
         })
+
         axios.get("http://localhost:5041/api/Customer/ShowAllCart/" + this.state.email).then(r => {
             console.log(r.data.length);
             this.setState({ n: r.data.length });
@@ -42,42 +42,39 @@ export default class ShowCart extends React.Component
         })
     }
 
-    Order=()=>{
-        let i=0;
-        for(i=0;i<this.state.products.length;i++)
-        {
-            var prod=this.state.products[i];
-            const o={
-                emailId:this.state.email,
-                sellerEmailId:prod.sellerEmailId,
-                productId:prod.productId,
-                productType:prod.productType,
-                productName:prod.productName,
-                productBrand:prod.productBrand,
-                productImage:prod.productImage,
-                productPrice:prod.productPrice,
-                productDescription:prod.productDescription,
-                shippingCost:prod.shippingCost,
-                quantityPurchased:1,
-                deliveryStatus:"On The Way"
+    AddToCart = (i) => {
+
+        const c = {
+            emailId: this.state.email,
+            sellerEmailId: i.emailId,
+            productId: i.productId,
+            productType: i.productType,
+            productName: i.productName,
+            productBrand: i.productBrand,
+            productImage: i.productImage,
+            productPrice: i.productPrice,
+            productDescription: i.productDescription,
+            shippingCost: i.shippingCost
+        }
+        console.log(c)
+        axios.post("http://localhost:5041/api/Customer/AddToCart", c).then(r => {
+            if (r.data) {
+                const root = ReactDOM.createRoot(document.getElementById('root'));
+                root.render(<ShowWishList />)
             }
-            console.log(o);
-            axios.post("http://localhost:5041/api/Customer/AddOrder",o).then(r=>{
-            })
-        }   
-        if(i==this.state.products.length)
-        {
-            alert("Order Placed Successfully!!!");
-            const root = ReactDOM.createRoot(document.getElementById('root'));
-            root.render(<ShowAllOrders/>);
-        }     
+            else {
+                return;
+            }
+        })
+
     }
 
-    emptycart=()=>{
-        axios.delete("http://localhost:5041/api/Customer/EmptyCart/"+this.state.email).then(r=>{
+    
+    emptyWishList=()=>{
+        axios.delete("http://localhost:5041/api/Customer/EmptyWishlist/"+this.state.email).then(r=>{
             if(r.data)
             {
-                alert("Cart Empty!!!!");
+                alert("WishList Empty!!!!");
                 const root = ReactDOM.createRoot(document.getElementById('root'));
                 root.render(<CustomerMenu/>); 
             }
@@ -90,9 +87,9 @@ export default class ShowCart extends React.Component
     }
 
     deleteItem=(i)=>{
-        axios.delete("http://localhost:5041/api/Customer/DeleteItemFromCart/"+i.cartId).then(r=>{
+        axios.delete("http://localhost:5041/api/Customer/DeleteItemFromWishlist/"+i.wishListId).then(r=>{
             const root = ReactDOM.createRoot(document.getElementById('root'));
-            root.render(<ShowCart/>);
+            root.render(<ShowWishList/>);
         })
     }
 
@@ -128,7 +125,6 @@ export default class ShowCart extends React.Component
     render()
     {
         return(
-            <>
             <div class="container-fluid">
                     <nav class="navbar navbar-expand-lg navbar-light bg-light">
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -174,7 +170,7 @@ export default class ShowCart extends React.Component
                     </nav>
                     <div class="container-fluid">
                         <div>
-                            <h2 style={{ textAlign: "center" }} className="container-fluid p-3 mb-2 bg-dark text-white centerstyle" >My Cart</h2>
+                            <h2 style={{ textAlign: "center" }} className="container-fluid p-3 mb-2 bg-dark text-white centerstyle" >My WishList</h2>
                         </div>
                 <div class="row">
                     {this.state.products.map(i=>
@@ -182,20 +178,20 @@ export default class ShowCart extends React.Component
                         <img src ={i.productImage} alt="Card image"/>
                         <p><b>Product Name:</b> {i.productName}<br/>
                         <b>Product Type:</b> {i.productType}<br/>
-                        <b>Product Brand: </b>{i.productBrand}<br/>
+                        <b>Product Brand:</b> {i.productBrand}<br/>
                         <b>Product Price: ₹ </b>{i.productPrice}<br/>
-                        <b>Available Quantity: </b>{i.productQuantity} <br/>
-                        <b>Product Rating: </b>{i.rating} </p>
-                        <button  class="btn btn-outline-danger" onClick={this.deleteItem.bind(this,i)}>Delete</button>
+                        <b>Available Quantity: </b>{i.productQuantity}<br/>
+                        <b>Product Rating:</b> {i.rating} </p>
+                        <div>
+                        <button  class="btn btn-outline-primary  buttonstyle2" onClick={this.deleteItem.bind(this,i)}>Delete</button>
+                        <button  class="btn btn-outline-warning buttonstyle2" onClick={this.AddToCart.bind(this,i)}>Cart</button>
+                        </div>
                         </div>
                     )}
                 </div>
-                <button  class="btn btn-success centeralign" onClick={this.Order}>Place Order</button>
-                <button  class="btn btn-danger centeralign" onClick={this.emptycart}>Empty Cart</button>
+                <button  class="btn btn-danger centeralign" onClick={this.emptyWishList}>Empty WishList</button>
             </div>
-            </div>
-
-        </>
+        </div>
         )
     }
 }

@@ -2,7 +2,10 @@ import React from "react";import { FormLabel,Box, TextField ,Select,MenuItem, Ty
 import '../../index.css';
 import axios from 'axios'
 import ReactDOM from "react-dom/client";
-
+import Login from "../Authenticate/Login";
+import AddPincode from "./AddPincode";
+import ShowAllOrdersOfSeller from "./ShowAllOrdersOfSeller";
+import ShowAllProductsOfSeller from "./ShowAllProductsOfSeller";
 
 export default class AddProduct extends React.Component{
 
@@ -14,7 +17,7 @@ export default class AddProduct extends React.Component{
     constructor(){
         super();
         this.state={
-            email:sessionStorage.getItem("email"),
+            email:sessionStorage.getItem("EM"),
             productType:'',
             productName:"",
             productBrand:"",
@@ -93,7 +96,7 @@ export default class AddProduct extends React.Component{
         }
 
         const prod={
-            emailId:"seller@gmail.com",
+            emailId:this.state.email,
             productType:this.state.productType  ,   
             productName:this.state.productName  , 
             productBrand:this.state.productBrand  ,   
@@ -130,18 +133,79 @@ export default class AddProduct extends React.Component{
             return true
         }
     }
+    home=()=>
+    {
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<ShowAllProductsOfSeller/>);
+    }
+    myproduct=()=>
+    {
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<ShowAllProductsOfSeller/>);
+    }
+
+    addprod=()=>
+    {
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<AddProduct/>);
+    }
+    addpin=()=>
+    {
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<AddPincode/>);
+    }
+    logout=()=>
+    {
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<Login/>);
+    }
+    order=()=>
+    {
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<ShowAllOrdersOfSeller/>);
+    }
 
     render(){
         return(
             <>
             <div className="container-fluid">
-            <Box textAlign={"center"} boxShadow={"6px 6px 12px black"} margin="auto" width={"50%"} marginTop={6}  padding={5}   sx={{
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 horizontal">
+                        
+                        <li class="fas fa-shipping-fast"><Button onClick={this.home}><strong><b>EKart Shopping</b></strong></Button></li>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        <li><button onClick={this.order} class="btn btn-primary btn-square">All Orders</button> </li>
+                        &nbsp;
+                        <li><button onClick={this.myproduct} class="btn btn-primary btn-square">My Products</button> </li>
+                        &nbsp;
+                        <li><button onClick={this.addprod} class="btn btn-primary btn-square">Add Product</button> </li>
+                        &nbsp;
+                        <li><button onClick={this.addpin} class="btn btn-primary btn-square">Add Pincode</button> </li>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        <li><button onClick={this.logout} class="btn btn-danger">Logout</button> </li>
+                        
+                    </ul> 
+                    </div>
+                </nav>
+
+                <h3 className="container-fluid p-3 mb-2 bg-dark text-white centerstyle">Add Product</h3>
+            <Box textAlign={"center"} boxShadow={"6px 6px 12px black"} margin="auto" className="paper" marginTop={6}  padding={5}   sx={{
                 ":hover": {
                     
                     boxShadow:"6px 6px 12px red",
                   }
                 }}>
-                <h3 className="container-fluid">Add Product Page</h3>
+                
                 <form onSubmit={this.submit}>
 
                     <div className="space">
