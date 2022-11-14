@@ -9,7 +9,10 @@ import ShowWishList from "./ShowWishList";
 import Home from "../Home/home";
 import ShoppingCarticon from "@mui/icons-material/ShoppingCart";
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import swal from 'sweetalert';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { FormLabel, FormControl, Input, InputLabel, Button, Select, MenuItem } from "@mui/material";
+import UserDetails from "../Authenticate/View_User";
 export default class ShowCart extends React.Component
 {
     constructor()
@@ -26,7 +29,7 @@ export default class ShowCart extends React.Component
             console.log(r.data);
             if(r.data.length<1)
             {
-                alert("Your Cart Is Empty!!!!");
+                swal("Empty!", "Your Cart is empty!", "warning");
                 const root = ReactDOM.createRoot(document.getElementById('root'));
                 root.render(<CustomerMenu/>);
             }
@@ -67,7 +70,7 @@ export default class ShowCart extends React.Component
         }   
         if(i==this.state.products.length)
         {
-            alert("Order Placed Successfully!!!");
+            swal("Ordered", "Order Placed Successfully!", "success");
             const root = ReactDOM.createRoot(document.getElementById('root'));
             root.render(<ShowAllOrders/>);
         }     
@@ -77,14 +80,14 @@ export default class ShowCart extends React.Component
         axios.delete("http://localhost:5041/api/Customer/EmptyCart/"+this.state.email).then(r=>{
             if(r.data)
             {
-                alert("Cart Empty!!!!");
+                swal("Cart Empty!", "No Products Found", "warning");
                 const root = ReactDOM.createRoot(document.getElementById('root'));
                 root.render(<CustomerMenu/>); 
             }
         })
     }
 
-    CustomerMenu=()=>{
+    customermenu=()=>{
         const root = ReactDOM.createRoot(document.getElementById('root'));
         root.render(<CustomerMenu/>);
     }
@@ -124,32 +127,41 @@ export default class ShowCart extends React.Component
         const root = ReactDOM.createRoot(document.getElementById('root'));
         root.render(<Home/>);
     }
-
+    userDetails = () => {
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<UserDetails/>);
+    }
     render()
     {
         return(
             <>
             <div class="container-fluid">
-                    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                            <ul class="navbar-nav me-auto mb-2 mb-lg-0 horizontal">
+                            <ul class="navbar-nav me-auto mb-2 mb-lg-0 horizontal navsize">
 
-                                <li class="fas fa-shipping-fast"><Button onClick={this.CustomerMenu}><strong><b>EKart Shopping</b></strong></Button></li>
-
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <li class="fas fa-shipping-fast"><Button onClick={this.customermenu}><strong><b>EKart Shopping</b></strong></Button></li>
                                 &nbsp;&nbsp;&nbsp;&nbsp;
+                                <li>
+                                <Button variant="contained" color="primary" onClick={this.userDetails} >
+                                        <div>{<AccountCircleIcon/>} </div>
+                                    </Button>
+                                </li>
+
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
                                 <li>
                                     <input class="form-control me-2 " type="search" placeholder="Search" onChange={this.getData} aria-label="Search" />
                                 </li>
                                 <li><button onClick={this.search} class="btn btn-primary">Search</button></li>
+                              
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                &nbsp;&nbsp;
+                                &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <li><button onClick={this.OrderPage} class="btn btn-primary">My Orders</button> </li>
                                 &nbsp;&nbsp;
                                 <li>
@@ -178,7 +190,7 @@ export default class ShowCart extends React.Component
                         </div>
                 <div class="row">
                     {this.state.products.map(i=>
-                        <div class="card col-md-3  card_design" style={{width:"195px",height:"300px"}} >
+                        <div class="card col-md-3  card_design" style={{width:"195px",height:"400px"}} >
                         <img src ={i.productImage} alt="Card image"/>
                         <p><b>Product Name:</b> {i.productName}<br/>
                         <b>Product Type:</b> {i.productType}<br/>

@@ -5,6 +5,8 @@ import '../../index.css';
 import Home from "../Home/home";
 import axios from "axios";
 import ForgotPassword from "./ForgotPassword";
+import Login from "./Login";
+import swal from 'sweetalert';
 
 export default class ResetPassword extends React.Component {
     constructor() {
@@ -40,15 +42,17 @@ export default class ResetPassword extends React.Component {
         let pwd = this.state.pwd;
         let cpwd = this.state.cpwd;
         if (pwd != cpwd) {
-            alert("Password and Confirm Password Does Not Match!!!\nPlease ReEnter The Password");
+            swal("Failed!", "Password and Confirm Password Does Not Match!!!\nPlease ReEnter The Password", "warning");
             return;
         }
         axios.put("http://localhost:5041/api/Authenticate/ForgotPwd/" + em + "/" + ans + "/" + pwd).then(r => {
             if (r.data) {
-                alert("Password Reset Successfull!")
+                swal("Congrats!", "Password Changed", "success");
+                const root = ReactDOM.createRoot(document.getElementById('root'));
+                root.render(<Login />);
             }
             else {
-                alert("Wrong Security Answer!!! Or Entering Your Same Old Password");
+                swal("Wrong!", "Wrong Security Answer Or Entering Your Same Old Password", "warning");
                 return;
             }
         })

@@ -40,11 +40,11 @@ export default class ShowAllProducts extends React.Component
         axios.post("http://localhost:5041/api/Customer/AddToCart",c).then(r=>{
             if(r.data)
             {
-                alert("Product Added to Cart Successfully!!!!");
+                swal("Success", "Product Added to Cart Successfully!", "success");
                 return ;
             }
             else{
-                alert("Server Error !!!!");
+                swal("Failed!", "Cannot Add Product To Cart", "warning");
                 return;
             }
         })
@@ -70,11 +70,11 @@ export default class ShowAllProducts extends React.Component
         axios.post("http://localhost:5041/api/Customer/AddToWishList",w).then(r=>{
             if(r.data)
             {
-                alert("Product Added to WishList Successfully!!!!");
+                swal("Success", "Product Added to Wishlist Successfully!", "success");
                 return ;
             }
             else{
-                alert("Server Error !!!!");
+                swal("Failed!", "Cannot Add Product To Cart", "warning");
                 return;
             }
         })

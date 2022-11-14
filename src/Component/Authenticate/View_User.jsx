@@ -54,7 +54,7 @@ export default class UserDetails extends React.Component {
             <>
                 <div class="container-fluid">
                     <div>
-                        <h2 style={{ textAlign: "center" }} className="container-fluid p-3 mb-2 bg-dark text-white centerstyle" >User Details</h2>
+                        <h2 style={{ textAlign: "center" }} className="container-fluid p-3 mb-2 bg-dark text-white centerstyle" >Profile Details</h2>
                     </div>
                     <Paper sx={{ width: '100%' }} class="paper">
                         <TableContainer sx={{width:"80%"}}>

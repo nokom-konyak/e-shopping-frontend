@@ -6,6 +6,9 @@ import Login from "../Authenticate/Login";
 import AddPincode from "./AddPincode";
 import ShowAllOrdersOfSeller from "./ShowAllOrdersOfSeller";
 import ShowAllProductsOfSeller from "./ShowAllProductsOfSeller";
+import swal from 'sweetalert';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import UserDetails from "../Authenticate/View_User";
 
 export default class AddProduct extends React.Component{
 
@@ -81,17 +84,17 @@ export default class AddProduct extends React.Component{
 
         const root = ReactDOM.createRoot(document.getElementById('root'));
         if(price<1){
-            alert("Product Price must be greater than 0");
+            swal("Failed!", "Product Price must be greater than 0", "warning");
             return ;
         }
         if(shippCost<0 || shippCost>=500 )
         {
-            alert("Shipping Cost Condition Failed!!!");
+            swal("Failed!", "Shipping Cost Condition Failed!", "warning");
             return;
         }
         if(prodQty<1)
         {
-            alert("Product Quantity must be greater 0!!!");
+            swal("Failed!", "Product Quantity must be greater 0!", "warning");
             return ;
         }
 
@@ -112,7 +115,7 @@ export default class AddProduct extends React.Component{
         axios.post("http://localhost:5041/api/Seller/AddProduct",prod).then(r=>{
             if(r.data)
             {
-                alert("Product Added Successfully!!!!");
+                swal("Done", "Product Added Successfully", "success");
                 return ;
             }
             else{
@@ -164,39 +167,49 @@ export default class AddProduct extends React.Component{
         const root = ReactDOM.createRoot(document.getElementById('root'));
         root.render(<ShowAllOrdersOfSeller/>);
     }
+    userDetails=()=>{
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<UserDetails/>);
+    }
 
     render(){
         return(
             <>
             <div className="container-fluid">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 horizontal">
-                        
-                        <li class="fas fa-shipping-fast"><Button onClick={this.home}><strong><b>EKart Shopping</b></strong></Button></li>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-                        <li><button onClick={this.order} class="btn btn-primary btn-square">All Orders</button> </li>
-                        &nbsp;
-                        <li><button onClick={this.myproduct} class="btn btn-primary btn-square">My Products</button> </li>
-                        &nbsp;
-                        <li><button onClick={this.addprod} class="btn btn-primary btn-square">Add Product</button> </li>
-                        &nbsp;
-                        <li><button onClick={this.addpin} class="btn btn-primary btn-square">Add Pincode</button> </li>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-                        <li><button onClick={this.logout} class="btn btn-danger">Logout</button> </li>
-                        
-                    </ul> 
-                    </div>
-                </nav>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav me-auto mb-2 mb-lg-0 horizontal navsize">
+                            &nbsp;&nbsp;
+                                <li class="fas fa-shipping-fast"><Button onClick={this.home}><strong><b>EKart Shopping</b></strong></Button></li>
+                                &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+                                <li>
+                                <Button variant="contained" color="primary" onClick={this.userDetails} >
+                                        <div>{<AccountCircleIcon/>} </div>
+                                    </Button>
+                                </li>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <li><button onClick={this.order} class="btn btn-primary btn-square">All Orders</button> </li>
+                                &nbsp;
+                                <li><button onClick={this.myproduct} class="btn btn-primary btn-square">My Products</button> </li>
+                                &nbsp;
+                                <li><button onClick={this.addprod} class="btn btn-primary btn-square">Add Product</button> </li>
+                                
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <li><button onClick={this.logout} class="btn btn-danger">Logout</button> </li>
+
+                            </ul>
+                        </div>
+                    </nav>
 
                 <h3 className="container-fluid p-3 mb-2 bg-dark text-white centerstyle">Add Product</h3>
             <Box textAlign={"center"} boxShadow={"6px 6px 12px black"} margin="auto" className="paper" marginTop={6}  padding={5}   sx={{
@@ -209,8 +222,8 @@ export default class AddProduct extends React.Component{
                 <form onSubmit={this.submit}>
 
                     <div className="space">
-                        <FormLabel htmlFor="ProductType" className="labels">Select Product Type</FormLabel>
-                        <Select  name="productType" className="menusize" onChange={this.Getdata} required>
+                        <FormLabel  htmlFor="ProductType" className="labels"><b>Select Product Type</b></FormLabel>
+                        <Select style = {{width:"100%"}} name="productType" className="menusize" onChange={this.Getdata} required>
                             <MenuItem value="" >Select</MenuItem>
                             <MenuItem value="Grocery">Grocery</MenuItem>
                             <MenuItem value="Mobile">Mobile</MenuItem>
@@ -218,7 +231,6 @@ export default class AddProduct extends React.Component{
                             <MenuItem value="Women's Wear">Women's Wear</MenuItem>
                             <MenuItem value="Electronics">Electronics</MenuItem>
                             <MenuItem value="Furniture">Furniture</MenuItem>
-                            <MenuItem value="Appliances">Appliances</MenuItem>
                             <MenuItem value="Toys">Toys</MenuItem>
                         </Select>
                     </div>

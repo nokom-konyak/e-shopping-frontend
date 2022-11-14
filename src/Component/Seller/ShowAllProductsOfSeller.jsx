@@ -14,6 +14,7 @@ import Carousel from 'react-bootstrap/Carousel';
 import Home from "../Home/home";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import UserDetails from "../Authenticate/View_User";
+import swal from 'sweetalert';
 
 export default class ShowAllProductsOfSeller extends React.Component {
     constructor() {
@@ -35,11 +36,11 @@ export default class ShowAllProductsOfSeller extends React.Component {
 
         axios.delete("http://localhost:5041/api/Seller/DeleteProduct/" + i.productId).then(r => {
             if (r.data) {
-                alert("Product Deleted Successfully!");
+                swal("Success!", " Product Deleted Successfully!", "success");
                 root.render(<ShowAllProductsOfSeller />);
             }
             else {
-                alert("Cannot Delete Product");
+                swal("Failed!", "Cannot Delete Product", "warning");
                 return;
             }
         })
@@ -85,35 +86,35 @@ export default class ShowAllProductsOfSeller extends React.Component {
         return (
             <>
                 <div class="container-fluid">
+
                     <nav class="navbar navbar-expand-lg navbar-light bg-light">
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                            <ul class="navbar-nav me-auto mb-2 mb-lg-0 horizontal">
-
+                            <ul class="navbar-nav me-auto mb-2 mb-lg-0 horizontal navsize">
+                            &nbsp;&nbsp;
                                 <li class="fas fa-shipping-fast"><Button onClick={this.home}><strong><b>EKart Shopping</b></strong></Button></li>
-                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                 <li>
                                 <Button variant="contained" color="primary" onClick={this.userDetails} >
                                         <div>{<AccountCircleIcon/>} </div>
                                     </Button>
                                 </li>
-                                
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <li><button onClick={this.order} class="btn btn-primary btn-square">All Orders</button> </li>
                                 &nbsp;
                                 <li><button onClick={this.myproduct} class="btn btn-primary btn-square">My Products</button> </li>
                                 &nbsp;
                                 <li><button onClick={this.addprod} class="btn btn-primary btn-square">Add Product</button> </li>
-                                &nbsp;
-                                <li><button onClick={this.addpin} class="btn btn-primary btn-square">Add Pincode</button> </li>
+                                
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                &nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <li><button onClick={this.logout} class="btn btn-danger">Logout</button> </li>
 
                             </ul>
@@ -153,7 +154,7 @@ export default class ShowAllProductsOfSeller extends React.Component {
                     </Carousel>
                     <div class="row">
                         {this.state.products.map(i =>
-                            <div class="card col-md-2 card_design" style={{ width: "200px", height: "320px" }} >
+                            <div class="card col-md-2 card_design" style={{ width: "190px", height: "400px" }} >
                                 <img src={i.productImage} alt="Card image" />
                                 <p><b>Product Name:</b> {i.productName}<br/>
                                     <b>Product Type:</b> {i.productType}<br/>

@@ -45,7 +45,7 @@ export default class GiveRating extends React.Component
                         <h2 style={{textAlign:"center"}} className="" >Give Rating Page</h2>
                     </div>
                 <div class="row box1" >
-                        <div class="card col-md-2  card_design" style={{width:"300px",height:"450px"}} >
+                        <div class="card col-md-2  card_design" style={{width:"300px",height:"470px"}} >
                         <img src ={this.state.order.productImage} alt="Card image" style={{width:"100%", height:"60%"}} />
                         <p><b>Product Name:</b> {this.state.order.productName}<br/>
                         <b>Product Type:</b> {this.state.order.productType}<br/>

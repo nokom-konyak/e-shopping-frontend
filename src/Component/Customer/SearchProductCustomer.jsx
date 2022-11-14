@@ -166,12 +166,12 @@ export default class SearchProductCustomer extends React.Component {
         return (
             <>
                 <div class="container-fluid">
-                    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                            <ul class="navbar-nav me-auto mb-2 mb-lg-0 horizontal">
+                            <ul class="navbar-nav me-auto mb-2 mb-lg-0 horizontal navsize">
 
                                 <li class="fas fa-shipping-fast"><Button onClick={this.customermenu}><strong><b>EKart Shopping</b></strong></Button></li>
                                 &nbsp;&nbsp;&nbsp;&nbsp;
@@ -180,15 +180,18 @@ export default class SearchProductCustomer extends React.Component {
                                         <div>{<AccountCircleIcon/>} </div>
                                     </Button>
                                 </li>
+
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
                                 <li>
                                     <input class="form-control me-2 " type="search" placeholder="Search" onChange={this.getData} aria-label="Search" />
                                 </li>
                                 <li><button onClick={this.search} class="btn btn-primary">Search</button></li>
+                              
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                &nbsp;&nbsp;
+                                &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <li><button onClick={this.OrderPage} class="btn btn-primary">My Orders</button> </li>
                                 &nbsp;&nbsp;
                                 <li>
@@ -216,13 +219,13 @@ export default class SearchProductCustomer extends React.Component {
 
                         <Container>
                             <Row md={7}>
-                                <Col className='grid '><img className="w-100" src={mobiles} alt="" onClick={this.click.bind(this, "Mobile")} /></Col>
-                                <Col className='grid'><img className="w-100" src={women} alt="" onClick={this.click.bind(this, "Women's Wear")} /> </Col>
-                                <Col className='grid'> <img className="w-100" src={electronics} alt="" onClick={this.click.bind(this, "Electronics")} /></Col>
-                                <Col className='grid'> <img className="w-100" src={Furniture} alt="" onClick={this.click.bind(this, "Furniture")} /></Col>
-                                <Col className='grid'> <img className="w-100" src={toys} alt="" onClick={this.click.bind(this, "Toys")} /></Col>
-                                <Col className='grid'> <img className="w-100" src={men} alt="" onClick={this.click.bind(this, "Men's Wear")} /></Col>
-                                <Col className='grid'> <img className="w-100" src={Grocery} alt="" onClick={this.click.bind(this, "Grocery")} /></Col>
+                                <Col className='grid imagecursor'><img className="w-100" src={mobiles} alt="" onClick={this.click.bind(this, "Mobile")} /></Col>
+                                <Col className='grid imagecursor'><img className="w-100" src={women} alt="" onClick={this.click.bind(this, "Women's Wear")} /> </Col>
+                                <Col className='grid imagecursor'> <img className="w-100" src={electronics} alt="" onClick={this.click.bind(this, "Electronics")} /></Col>
+                                <Col className='grid imagecursor'> <img className="w-100" src={Furniture} alt="" onClick={this.click.bind(this, "Furniture")} /></Col>
+                                <Col className='grid imagecursor'> <img className="w-100" src={toys} alt="" onClick={this.click.bind(this, "Toys")} /></Col>
+                                <Col className='grid imagecursor'> <img className="w-100" src={men} alt="" onClick={this.click.bind(this, "Men's Wear")} /></Col>
+                                <Col className='grid imagecursor'> <img className="w-100" src={Grocery} alt="" onClick={this.click.bind(this, "Grocery")} /></Col>
 
                             </Row>
                         </Container>
@@ -263,7 +266,7 @@ export default class SearchProductCustomer extends React.Component {
                     <h1 style={{ textAlign: "center" }} >{this.state.prodName}</h1>
                     <div class="row">
                         {this.state.products.map(i =>
-                            <div class="card col-md-2 card_design" style={{ width: "200px", height: "400px" }} >
+                            <div class="card col-md-2 card_design" style={{ width: "200px", height: "420px" }} >
                                 <img src={i.productImage} alt="Card image" />
                                 <p><b>Product Name:</b> {i.productName}<br />
                                     <b>Product Type:</b> {i.productType}<br />

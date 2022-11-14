@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import furniture from '../../Images/Furniture.png';
+import about from '../../Images/about.png';
 import Image from "react-bootstrap/Image";
-import logo from '../../Images/banner.jpg';
+import aboutlogo from '../../Images/aboutlogo.png';
 import Card from 'react-bootstrap/Card';
 import Home from './home';
 import ReactDOM from 'react-dom/client';
@@ -70,233 +70,104 @@ export default class AboutUs extends Component {
                             </ul>
                         </div>
                     </nav>
-                    <div>
-                        <h2 style={{ textAlign: "center" }} className="container-fluid p-3 mb-2 bg-secondary text-white centerstyle" >About Us</h2>
+                    <Image src={about} fluid />
+                <h1 className='header'>About US</h1>
+                <div className="whatwedo container-fluid row ">
+
+                    <Image src={aboutlogo} fluid width={"50%"} className="image-fluid col-sm" />
+
+                    <div className="inner">
+                        <h4>What We Do</h4>
+                        This website allows people to buy and sell physical goods, services, and digital products over the internet rather than at a brick-and-mortar location. Through an e-commerce website, a business can process orders, accept payments, manage shipping and logistics, and provide customer service.
+We have developed it using React and Material UI for frontend.
                     </div>
-                    <div>
-                        <div className="inner text-light">
-                            <br />
-                            <br />
-                            <h3>What We Do</h3>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem natus rem corrupti in ab eaque dolore nemo enim iusto? Excepturi aut amet laudantium optio sequi iusto eius quia quidem fugit!
-                        </div>
-                    </div>
-                    <br/><br/>
+                </div>
 
-                    <h3 className="inner text-light">Our Team</h3>
-                    <div className="inner text-light" >
-                        <h6>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat expedita ut exercitationem iusto debitis temporibus a maxime, nesciunt nostrum nam!</h6>
-                        <br/><br/>
-                    </div>
+                <h3>Our Team</h3>
+                <div >
+                    <h6>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat expedita ut exercitationem iusto debitis temporibus a maxime, nesciunt nostrum nam!</h6>
+                </div>
 
-                    <div className="row">
-                        <Card class="col-md card_design">
-                            <Card.Img variant="top" src={boy1} />
-                            <Card.Body>
-                                <Card.Title>SACHIN KUMAR</Card.Title>
-                                <Card.Text>
-                                    Some quick example text to build on the card title and make up the
-                                    bulk of the card's content.
-                                </Card.Text>
+                <div className="teams container-fluid row">
+                    <Card style={{ width: '18rem' }} class="col-md ">
+                        <Card.Img variant="top" src={boy1} />
+                        <Card.Body>
+                            <Card.Title>SACHIN KUMAR</Card.Title>
+                            <Card.Text>
+                                Some quick example text to build on the card title and make up the
+                                bulk of the card's content.
+                            </Card.Text>
 
-                            </Card.Body>
-                        </Card>
-                        <Card  class="col-md card_design">
-                            <Card.Img variant="top" src={boy2} />
-                            <Card.Body>
-                                <Card.Title>Abhay Sachan</Card.Title>
-                                <Card.Text>
-                                    Some quick example text to build on the card title and make up the
-                                    bulk of the card's content.
-                                </Card.Text>
-                                <i class="bi bi-facebook"></i>
-                            </Card.Body>
-                        </Card>
-                        <Card  class="col-md card_design">
-                            <Card.Img variant="top" src={girl1} />
-                            <Card.Body>
-                                <Card.Title>Ananya Singh</Card.Title>
-                                <Card.Text>
-                                    Some quick example text to build on the card title and make up the
-                                    bulk of the card's content.
-                                </Card.Text>
-                                <i class="bi bi-facebook"></i>
-                            </Card.Body>
-                        </Card>
-                        <Card  class="col-md card_design">
-                            <Card.Img variant="top" src={boy3} />
-                            <Card.Body>
-                                <Card.Title>Barun Kumar</Card.Title>
-                                <Card.Text>
-                                    Some quick example text to build on the card title and make up the
-                                    bulk of the card's content.
-                                </Card.Text>
-                            </Card.Body>
-                        </Card>
-                        <Card  class="col-md card_design">
-                            <Card.Img variant="top" src={boy4} />
-                            <Card.Body>
-                                <Card.Title>Nokom Konyak</Card.Title>
-                                <Card.Text>
-                                    Some quick example text to build on the card title and make up the
-                                    bulk of the card's content.
-                                </Card.Text>
-                            </Card.Body>
-                        </Card>
-                        <Card  class="col-md card_design">
-                            <Card.Img variant="top" src={girl2} />
-                            <Card.Body>
-                                <Card.Title>Suhana A</Card.Title>
-                                <Card.Text>
-                                    Some quick example text to build on the card title and make up the
-                                    bulk of the card's content.
-                                </Card.Text>
-                            </Card.Body>
-                        </Card>
-                        <Card  class="col-md card_design">
-                            <Card.Img variant="top" src={boy5} width="50%" height="50%" />
-                            <Card.Body>
-                                <Card.Title>Hasnain Siddiqui</Card.Title>
-                                <Card.Text>
-                                    Some quick example text to build on the card title and make up the
-                                    bulk of the card's content.
-                                </Card.Text>
-                            </Card.Body>
-                        </Card>
-                    </div>
-                    </div>
-                    <div class="container-fluid">
-
-                    <footer class="text-center text-lg-start bg-light text-muted">
-                        <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
-                            <div class="me-5 d-none d-lg-block">
-                                <span>Get connected with us on social networks:</span>
-                            </div>
-
-                            <div>
-                                <a href="https://www.facebook.com/" class="me-4 text-reset">
-                                    <i class="fab fa-facebook-f"></i>
-                                </a>
-                                <a
-                                    href="http://www.twitter.com/share?url=http://www.google.com/"
-                                    class="me-4 text-reset"
-                                >
-                                    <i class="fab fa-twitter"></i>
-                                </a>
-                                <a href="https://www.google.com/" class="me-4 text-reset">
-                                    <i class="fab fa-google"></i>
-                                </a>
-                                <a href="https://www.instagram.com/" class="me-4 text-reset">
-                                    <i class="fab fa-instagram"></i>
-                                </a>
-                                <a href="https://www.linkedin.com/" class="me-4 text-reset">
-                                    <i class="fab fa-linkedin"></i>
-                                </a>
-                                <a href="https://github.com/" class="me-4 text-reset">
-                                    <i class="fab fa-github"></i>
-                                </a>
-                            </div>
-                        </section>
-
-                        <section class="">
-                            <div class="container text-center text-md-start mt-5">
-                                <div class="row mt-3">
-                                    <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-                                        <h6 class="text-uppercase fw-bold mb-4">
-                                            <i class="fas fa-gem me-3"></i>Ekart Shopping
-                                        </h6>
-                                        <p>
-                                            We use cookies to provide you with a customized user
-                                            experience. By continuing to browse this site, you consent
-                                            to the use of cookies. For more details on our cookie
-                                            practices and options for disabling cookies, please see our
-                                            cookie policy.
-                                        </p>
-                                    </div>
-
-                                    <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-                                        <h6 class="text-uppercase fw-bold mb-4">Products</h6>
-                                        <p>
-                                            <a href="#!" class="text-reset">
-                                                Electronics
-                                            </a>
-                                        </p>
-                                        <p>
-                                            <a href="#!" class="text-reset">
-                                                Mobiles
-                                            </a>
-                                        </p>
-                                        <p>
-                                            <a href="#!" class="text-reset">
-                                                Mens_Wear
-                                            </a>
-                                        </p>
-                                        <p>
-                                            <a href="#!" class="text-reset">
-                                                Gadegt
-                                            </a>
-                                        </p>
-                                    </div>
-
-                                    <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-                                        <h6 class="text-uppercase fw-bold mb-4">Useful links</h6>
-                                        <p>
-                                            <a href="#!" class="text-reset">
-                                                Pricing
-                                            </a>
-                                        </p>
-                                        <p>
-                                            <a href="#!" class="text-reset">
-                                                Settings
-                                            </a>
-                                        </p>
-                                        <p>
-                                            <a href="#!" class="text-reset">
-                                                Orders
-                                            </a>
-                                        </p>
-                                        <p>
-                                            <a href="#!" class="text-reset">
-                                                Help
-                                            </a>
-                                        </p>
-                                    </div>
-
-                                    <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-                                        <h6 class="text-uppercase fw-bold mb-4">Contact us</h6>
-                                        <p>
-                                            <i class="fas fa-home me-3"></i> Address: 32, C Block, Grape
-                                            Garden, 17th H Main Rd, KHB Colony, 6th Block, Koramangala,
-                                            Bengaluru, Karnataka 560095
-                                        </p>
-                                        <p>
-                                            <i class="fas fa-envelope me-3"></i>
-                                            ekart.shopping@gmail.com
-                                        </p>
-                                        <p>
-                                            <i class="fas fa-phone me-3"></i> + 01 234 567 88
-                                        </p>
-                                        <p>
-                                            <i class="fas fa-print me-3"></i> + 01 234 567 89
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-
-                        <div class="text-center p-4">
-                            © 2021 Copyright:
-                            <a class="text-reset fw-bold" href="https://www.tavant.com/">
-                                ecart.com
-                            </a>
-                        </div>
-                    </footer>
+                        </Card.Body>
+                    </Card>
+                    <Card style={{ width: '18rem' }} class="col-md ">
+                        <Card.Img variant="top" src={boy2} />
+                        <Card.Body>
+                            <Card.Title>Abhay Sachan</Card.Title>
+                            <Card.Text>
+                                Some quick example text to build on the card title and make up the
+                                bulk of the card's content.
+                            </Card.Text>
+                            
+                        </Card.Body>
+                    </Card>
+                    <Card style={{ width: '18rem' }} class="col-md ">
+                        <Card.Img variant="top" src={girl1} />
+                        <Card.Body>
+                            <Card.Title>Ananya Singh</Card.Title>
+                            <Card.Text>
+                                Some quick example text to build on the card title and make up the
+                                bulk of the card's content.
+                            </Card.Text>
+                            
+                        </Card.Body>
+                    </Card>
+                    <Card style={{ width: '18rem' }} class="col-md ">
+                        <Card.Img variant="top" src={boy3} />
+                        <Card.Body>
+                            <Card.Title>Barun Kumar</Card.Title>
+                            <Card.Text>
+                                Some quick example text to build on the card title and make up the
+                                bulk of the card's content.
+                            </Card.Text>
+                        </Card.Body>
+                    </Card>
+                    <Card style={{ width: '18rem' }} class="col-md ">
+                        <Card.Img variant="top" src={boy4} />
+                        <Card.Body>
+                            <Card.Title>Nokom Konyak</Card.Title>
+                            <Card.Text>
+                                Some quick example text to build on the card title and make up the
+                                bulk of the card's content.
+                            </Card.Text>
+                        </Card.Body>
+                    </Card>
+                    <Card style={{ width: '18rem' }} class="col-md ">
+                        <Card.Img variant="top" src={girl2} />
+                        <Card.Body>
+                            <Card.Title>Suhana A</Card.Title>
+                            <Card.Text>
+                                Some quick example text to build on the card title and make up the
+                                bulk of the card's content.
+                            </Card.Text>
+                        </Card.Body>
+                    </Card>
+                    <Card style={{ width: '18rem' }} class="col-md ">
+                        <Card.Img variant="top" src={boy5} />
+                        <Card.Body>
+                            <Card.Title>Hasnain Siddiqui</Card.Title>
+                            <Card.Text>
+                                Some quick example text to build on the card title and make up the
+                                bulk of the card's content.
+                            </Card.Text>
+                        </Card.Body>
+                    </Card>
+                </div>
                 </div>
 
             </>
         )
     }
 }
-
 
 

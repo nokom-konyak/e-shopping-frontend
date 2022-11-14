@@ -73,7 +73,8 @@
     background-color: #f6f7f2;
 }
   .card img{
-    width:100%;
+    align-self: center;
+    width:70%;
     height:40%;
     margin-bottom: 2px;
     transition: 0.3s ease-in-out;
@@ -156,12 +157,54 @@
   justify-content: center;
 }
 
-.bgdesign{
-  background-image: url("./Images/banner.jpg");
+.imagecursor{
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}    
+.imagecursor img:hover{
+    transition:0.3s ease-in-out;
+    transform: scale(1.10);
+  }
+
+.navsize{
+  padding-bottom: 15px;
+  width: 100%;
+  padding-top: 15px;
 }
 
 
 
-
-
-
+.header
+{
+  text-align: center;
+}
+ 
+.whatwedo
+{
+  /* border: 2px solid black; */
+  display: flex;
+  padding: 5%;
+ 
+}
+.inner
+{
+  margin-top: 5%;
+margin-left: 20px;
+}
+.teams
+{
+  text-align: center;
+  margin-left: 2%;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  font-size: 100%;
+}
+h6,h3{
+  text-align: center;
+  margin-top: 20px;
+ 
+ 
+  align-items: center;
+  
+}

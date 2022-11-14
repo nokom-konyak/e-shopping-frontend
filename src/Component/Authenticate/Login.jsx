@@ -86,8 +86,7 @@ export default class Login extends React.Component {
                             <div className="space" >
                                 <TextField variant="filled" label="Password" type={"password"} name="pwd" fullWidth onInput={this.Getdata} required />
                             </div>
-                            <button class="btn btn-outline-dark" onClick={this.ForgotPwd}>Forgot Password?</button> <br />
-
+                            <a href style={{cursor:"pointer"}} onClick={this.ForgotPwd}><u>Forgot Password?</u></a> <br />
                             <div className="space">
                                 <Button variant="contained" type="submit" endIcon={<LoginOutlinedIcon />} color="warning" sx={{ ":hover": { backgroundColor: "green" } }} disabled={!this.isvalid()}
                                     disableRipple onClick={this.submit}>Login</Button> &nbsp; &nbsp; &nbsp; &nbsp;

@@ -4,6 +4,7 @@ import axios from "axios";
 import ReactDOM from 'react-dom/client';
 import CustomerMenu from "./CustomerMenu";
 import ShowAllOrders from "./ShowAllOrders";
+import swal from 'sweetalert';
 export default class PlaceOrder extends React.Component {
     constructor() {
         super();
@@ -43,15 +44,15 @@ export default class PlaceOrder extends React.Component {
     placeorder = () => {
         const root = ReactDOM.createRoot(document.getElementById('root'));
         if (this.state.qty < 1) {
-            alert("Quantity Cannot be less than 1!!!");
+            swal("Failed!", "Quantity Cannot be less than 1!", "warning");
             return;
         }
         if (this.state.qty > 10) {
-            alert("Quantity must be between 1 to 10!!!!");
+            swal("Failed!", "Quantity must be between 1 to 10!", "warning");
             return;
         }
         if (this.state.qty > this.state.product.productQuantity) {
-            alert("Ordered Quantity Not Available!!!");
+            swal("Failed!", "Ordered Quantity Not Available!", "warning");
             return;
         }
 
@@ -72,11 +73,11 @@ export default class PlaceOrder extends React.Component {
         console.log(o);
         axios.post("http://localhost:5041/api/Customer/AddOrder", o).then(r => {
             if (r.data) {
-                alert("Order Placed Successfully!!!");
+                swal("Congrats!", "Order Placed Successfully", "success");
                 root.render(<ShowAllOrders />)
             }
             else {
-                alert("Server Error!!!");
+                swal("Failed!", "Server Error", "warning");
             }
 
 

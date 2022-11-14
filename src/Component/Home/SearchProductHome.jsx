@@ -98,31 +98,31 @@ export default class SearchProductHome extends React.Component {
         return (
             <>
                 <div class="container-fluid">
-                    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                            <ul class="navbar-nav me-auto mb-2 mb-lg-0 horizontal">
-
+                            <ul class="navbar-nav me-auto mb-2 mb-lg-0 horizontal navsize">
+                            &nbsp;&nbsp; 
                                 <li class="fas fa-shipping-fast"><Button onClick={this.home}><strong><b>EKart Shopping</b></strong></Button></li>
-                                &nbsp;&nbsp;&nbsp;&nbsp;
-                                <li><button onClick={this.login} class="btn btn-primary">Login</button> </li>
-                                &nbsp;&nbsp;&nbsp;&nbsp;
-                                <li><button onClick={this.register} class="btn btn-primary">New Registration</button> </li>
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <li>
                                     <input class="form-control me-2" type="search" placeholder="Search" onChange={this.getData} aria-label="Search" />
                                 </li>
+                                &nbsp;
                                 <li><button onClick={this.search} class="btn btn-primary">Search</button></li>
-                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <li><button onClick={this.login} class="btn btn-primary">Login</button> </li>
+                                &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp; 
+                                <li><button onClick={this.register} class="btn btn-primary">Register</button> </li>
+                                &nbsp;&nbsp;
                                 <li >
                                     <button onClick={this.customerCare} class="btn btn-primary">Customer Care</button>
-                                    
+                                    &nbsp;                                      
                                 </li>
                                 
-                                &nbsp;
                                 <li>
                                     <Button variant="contained" color="primary" onClick={this.login} >
                                         <div>{<FavoriteIcon />} </div>
@@ -192,7 +192,7 @@ export default class SearchProductHome extends React.Component {
                     <h1 style={{ textAlign: "center" }} >{this.state.prodName}</h1>
                     <div class="row">
                         {this.state.products.map(i =>
-                            <div class="card col-md-2 card_design" style={{ width: "200px", height: "400px" }} >
+                            <div class="card col-md-2 card_design" style={{ width: "200px", height: "420px" }} >
                                 <img src={i.productImage} alt="Card image" />
                                 <p><b>Product Name:</b> {i.productName}<br />
                                     <b>Product Type:</b> {i.productType}<br />

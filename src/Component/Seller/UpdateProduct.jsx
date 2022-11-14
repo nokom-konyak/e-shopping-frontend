@@ -5,6 +5,7 @@ import ReactDOM from "react-dom/client";
 import Login from "../Authenticate/Login";
 import AddPincode from "./AddPincode";
 import ShowAllOrdersOfSeller from "./ShowAllOrdersOfSeller";
+import swal from 'sweetalert';
 import ShowAllProductsOfSeller from "./ShowAllProductsOfSeller";
 
 export default class UpdateProduct extends React.Component{
@@ -82,17 +83,17 @@ export default class UpdateProduct extends React.Component{
 
         const root = ReactDOM.createRoot(document.getElementById('root'));
         if(price<1){
-            alert("Product Price must be greater than 0");
+            swal("Failed!", "Product Price must be greater than 0", "warning");
             return ;
         }
         if(shippCost<0 || shippCost>=500 )
         {
-            alert("Shipping Cost Condition Failed!");
+            swal("Failed!", "Shipping Cost Condition Failed!", "warning");
             return;
         }
         if(prodQty<1)
         {
-            alert("Product Quantity must be greater 0!");
+            swal("Failed!", "Product Quantity must be greater 0!", "warning");
             return ;
         }
 
@@ -113,11 +114,11 @@ export default class UpdateProduct extends React.Component{
         axios.put("http://localhost:5041/api/Seller/UpdateProduct/"+this.state.pid ,prod).then(r=>{
             if(r.data)
             {
-                alert("Product Updated Successfully!");
+                swal("Success!", " Product Updated Successfully!", "success");
                 return ;
             }
             else{
-                alert("Cannot Update Product");
+                swal("Failed!", "Cannot Update Product", "warning");
                 return;
             }
         })

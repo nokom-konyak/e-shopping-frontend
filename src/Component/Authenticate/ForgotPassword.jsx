@@ -4,6 +4,7 @@ import ReactDOM from "react-dom/client";
 import '../../index.css'
 import axios from "axios";
 import Home from "../Home/home";
+import swal from 'sweetalert';
 import ResetPassword from "./ResetPassword";
 
 export default class ForgotPassword extends React.Component {
@@ -33,7 +34,7 @@ export default class ForgotPassword extends React.Component {
                 root.render(<ResetPassword />)
             }
             else {
-                alert("No Record Found for Email Id : " + em);
+                swal("Failed!", "No Record Found", "warning");
 
             }
         })

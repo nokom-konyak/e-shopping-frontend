@@ -83,7 +83,7 @@ export default class UpdateUserDetails extends React.Component {
         return (
             <div class="container-fluid">
                 <div>
-                    <h2 style={{ textAlign: "center" }} className="container-fluid p-3 mb-2 bg-dark text-white centerstyle" >Update User Detials</h2>
+                    <h2 style={{ textAlign: "center" }} className="container-fluid p-3 mb-2 bg-dark text-white centerstyle" >Update Profile Details</h2>
                 </div>
                 <div >
                     <CssBaseline />

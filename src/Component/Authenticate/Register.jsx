@@ -5,6 +5,7 @@ import axios from 'axios'
 import ReactDOM from "react-dom/client";
 import Home from "../Home/home";
 import swal from 'sweetalert';
+import { Warning } from "@mui/icons-material";
 
 
 export default class Register extends React.Component {
@@ -36,6 +37,29 @@ export default class Register extends React.Component {
         e.preventDefault();
         sessionStorage.setItem("UType", this.state.usertype);
         const root = ReactDOM.createRoot(document.getElementById('root'));
+        let emailId= this.state.email;
+        let emailValidate= /^([a-zA-Z0-9_\.\-\+])+@gmail.com$/;  
+        if(!emailId.match(emailValidate))
+        {
+            swal("oops!", "Invalid type of Email Id", "warning");
+            return;
+        }
+        let mobno = this.state.mobno;
+        
+        let mobnoValidate= /^\(?([1-9]{1})\)?[-. ]?([0-9]{9})$/;
+        if(!mobno.match(mobnoValidate))
+        {
+            swal("oops!", "Invalid Mobile Number", "warning");
+            return;
+        }
+
+        let pwd= this.state.pwd;
+        let pwdValidate= ("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})"); 
+        if(!pwd.match(pwdValidate))
+        {
+            swal("Sorry!", "Must contain at least one number, one uppercase, one lowercase one special letter , and should be greater than 8 characters ", "warning");
+            return;
+        }
         const register = {
             emailId: this.state.email,
             name: this.state.name,

@@ -17,6 +17,7 @@ import ReactDOM from "react-dom/client";
 import Login from "../Authenticate/Login";
 import AddProduct from "./AddProduct";
 import ShowAllOrdersOfSeller from "./ShowAllOrdersOfSeller";
+import swal from 'sweetalert';
 import ShowAllProductsOfSeller from "./ShowAllProductsOfSeller";
 
 export default class AddPincode extends React.Component{
@@ -43,7 +44,7 @@ export default class AddPincode extends React.Component{
     }
 
     isValid = () =>{
-        if(this.state.pincode === "") 
+        if(this.state.pincode === "" || this.state.pincode.length != 6 ) 
             return false;
         else
             return true;
@@ -59,11 +60,11 @@ export default class AddPincode extends React.Component{
         axios.post("http://localhost:5041/api/Seller/AddPinCode", pcode).then(r=>{
             if(r.data)
             {
-            alert("PinCode Added");
+                swal("Done", "Pincode Added Successfully", "success");
             return;
             }
             else{
-                alert("PinCode Already Added")
+                swal("Failed!", "Cannot Add Pincode", "warning");
             }
         })
         
@@ -125,13 +126,13 @@ export default class AddPincode extends React.Component{
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                       
                         <li><button onClick={this.logout} class="btn btn-danger">Logout</button> </li>
                         
                     </ul> 
                     </div>
                 </nav>
-                <h3 className="container-fluid p-3 mb-2 bg-dark text-white centerstyle">Add Product</h3>
+                <h3 className="container-fluid p-3 mb-2 bg-dark text-white centerstyle">Add Pincode</h3>
                 <CssBaseline />
                 <Paper className="paper" sx={{backgroundColor : "transparent" , boxShadow :"6px 6px 12px black"}}>
                     <Avatar>

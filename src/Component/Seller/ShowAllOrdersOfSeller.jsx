@@ -7,6 +7,8 @@ import AddProduct from "./AddProduct";
 import AddPincode from "./AddPincode";
 import ShowAllProductsOfSeller from "./ShowAllProductsOfSeller";
 import ChangeDeliveryStatus from "./ChangeDeliveryStatus";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import UserDetails from "../Authenticate/View_User";
 export default class ShowAllOrdersOfSeller extends React.Component {
     constructor() {
         super();
@@ -52,18 +54,28 @@ export default class ShowAllOrdersOfSeller extends React.Component {
         const root = ReactDOM.createRoot(document.getElementById('root'));
         root.render(<ShowAllOrdersOfSeller />);
     }
+    userDetails=()=>{
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<UserDetails/>);
+    }
     render() {
         return (
             <>
                 <div class="container-fluid">
-                    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                            <ul class="navbar-nav me-auto mb-2 mb-lg-0 horizontal">
-
+                            <ul class="navbar-nav me-auto mb-2 mb-lg-0 horizontal navsize">
+                            &nbsp;&nbsp;
                                 <li class="fas fa-shipping-fast"><Button onClick={this.home}><strong><b>EKart Shopping</b></strong></Button></li>
+                                &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+                                <li>
+                                <Button variant="contained" color="primary" onClick={this.userDetails} >
+                                        <div>{<AccountCircleIcon/>} </div>
+                                    </Button>
+                                </li>
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -73,12 +85,12 @@ export default class ShowAllOrdersOfSeller extends React.Component {
                                 <li><button onClick={this.myproduct} class="btn btn-primary btn-square">My Products</button> </li>
                                 &nbsp;
                                 <li><button onClick={this.addprod} class="btn btn-primary btn-square">Add Product</button> </li>
-                                &nbsp;
-                                <li><button onClick={this.addpin} class="btn btn-primary btn-square">Add Pincode</button> </li>
+                                
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <li><button onClick={this.logout} class="btn btn-danger">Logout</button> </li>
 
                             </ul>

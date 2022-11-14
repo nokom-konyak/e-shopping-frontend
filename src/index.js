@@ -1,12 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import AddShippingAddress from './Component/Customer/addShippingAddress';
-import Register from './Component/Authenticate/Register';
-import AddProduct from './Component/Seller/AddProduct';
-import ShowAllProducts from './Component/Customer/ShowAllProducts';
-import PlaceOrder from './Component/Customer/PlaceOrder';
 import Home from './Component/Home/home';
+import Footer from './Component/Home/Footer';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -14,4 +10,9 @@ root.render(
   <Home></Home>
   </>
 );
-
+const root2 = ReactDOM.createRoot(document.getElementById('root2'));
+root2.render(
+  <>
+  <Footer/>
+  </>
+);
